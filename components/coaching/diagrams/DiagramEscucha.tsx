@@ -6,7 +6,7 @@ export default function DiagramEscucha() {
     <Frame label="La brecha entre lo dicho y lo escuchado" viewBox="0 0 560 260">
       <ArrowDefs id="escu-a" />
       <Box x={25} y={70} w={185} h={64} label="Lo que digo" sub="orador: mi inquietud" />
-      <Box x={350} y={70} w={185} h={64} label="Lo que escucho" sub="oyente: oigo + interpreto" accent />
+      <Box x={350} y={70} w={185} h={64} label="Lo que escucho" sub="oyente: oigo + interpreto" highlight />
       <Arrow
         d="M212 102 L 348 102"
         markerId="escu-a"

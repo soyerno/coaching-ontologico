@@ -29,8 +29,8 @@ export default function ClassifyExercise({
     if (!checked) {
       return `${base} ${
         chosen
-          ? "border-accent bg-accent-light text-ink"
-          : "border-border bg-surface text-muted hover:border-accent hover:text-ink"
+          ? "border-brand bg-brand-light text-ink"
+          : "border-border bg-surface text-muted hover:border-brand hover:text-ink"
       }`;
     }
     if (!chosen) return `${base} border-border bg-surface text-muted opacity-50`;

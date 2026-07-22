@@ -36,7 +36,7 @@ export default function ThemeToggle() {
       onClick={cycle}
       aria-label={`Tema: ${LABEL[theme]}`}
       suppressHydrationWarning
-      className="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-ink-soft transition-colors hover:border-accent"
+      className="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-ink-soft transition-colors hover:border-brand"
     >
       {LABEL[theme]}
     </button>

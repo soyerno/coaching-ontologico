@@ -27,7 +27,7 @@ export default function GlosarioPage() {
             <a
               key={chapter.slug}
               href={`#${chapter.slug}`}
-              className="rounded-full border border-border bg-surface px-2.5 py-1 text-muted transition-colors hover:border-accent hover:text-ink"
+              className="rounded-full border border-border bg-surface px-2.5 py-1 text-muted transition-colors hover:border-brand hover:text-ink"
             >
               {chapter.icon} {chapter.title}
             </a>

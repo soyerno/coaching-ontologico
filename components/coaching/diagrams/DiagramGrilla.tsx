@@ -24,8 +24,8 @@ export default function DiagramGrilla() {
       </text>
       <Box x={120} y={70} w={210} h={70} label="Resentimiento" sub="«esto no debería haber pasado»" />
       <Box x={335} y={70} w={210} h={70} label="Resignación" sub="«para qué, nada va a cambiar»" />
-      <Box x={120} y={165} w={210} h={70} label="Aceptación / paz" sub="«pasó; elijo cerrarlo»" accent />
-      <Box x={335} y={165} w={210} h={70} label="Ambición" sub="«acá veo espacio para actuar»" accent />
+      <Box x={120} y={165} w={210} h={70} label="Aceptación / paz" sub="«pasó; elijo cerrarlo»" highlight />
+      <Box x={335} y={165} w={210} h={70} label="Ambición" sub="«acá veo espacio para actuar»" highlight />
       <Caption x={330} y={272} text="Los cuatro son juicios — por eso se pueden examinar y trabajar" />
     </Frame>
   );

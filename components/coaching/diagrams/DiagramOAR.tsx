@@ -5,7 +5,7 @@ export default function DiagramOAR() {
   return (
     <Frame label="Modelo observador, acción, resultados" viewBox="0 0 560 250">
       <ArrowDefs id="oar-a" />
-      <Box x={20} y={60} w={155} h={60} label="Observador" sub="lo que distingo e interpreto" accent />
+      <Box x={20} y={60} w={155} h={60} label="Observador" sub="lo que distingo e interpreto" highlight />
       <Box x={205} y={60} w={150} h={60} label="Acción" sub="lo que hago" />
       <Box x={385} y={60} w={155} h={60} label="Resultados" sub="lo que obtengo" />
       <Arrow d="M175 90 L 203 90" markerId="oar-a" />

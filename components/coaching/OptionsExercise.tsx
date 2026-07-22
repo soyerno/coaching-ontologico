@@ -28,8 +28,8 @@ export default function OptionsExercise({
     if (!checked) {
       return `${base} ${
         selected === i
-          ? "border-accent bg-accent-light text-ink font-medium"
-          : "border-border bg-surface text-ink hover:border-accent"
+          ? "border-brand bg-brand-light text-ink font-medium"
+          : "border-border bg-surface text-ink hover:border-brand"
       }`;
     }
     if (i === correct) return `${base} border-accent bg-accent-light font-medium text-ink`;

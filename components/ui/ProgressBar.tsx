@@ -34,7 +34,7 @@ export default function ProgressBar({
       className={`block ${HEIGHTS[size]} overflow-hidden rounded-full bg-border ${className}`}
     >
       <span
-        className="block h-full rounded-full bg-accent transition-[width] duration-500 ease-out"
+        className="block h-full rounded-full bg-brand transition-[width] duration-500 ease-out"
         style={{ width: `${clamped}%` }}
       />
     </span>

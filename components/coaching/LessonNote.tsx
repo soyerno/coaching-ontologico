@@ -32,7 +32,7 @@ export default function LessonNote({
   return (
     <div className={compact ? "" : "mt-8 rounded-xl border border-border bg-surface p-4 text-left"}>
       {!compact && (
-        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent">
+        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand">
           Mis notas de esta lección 📓
         </p>
       )}
@@ -44,7 +44,7 @@ export default function LessonNote({
         }}
         placeholder="¿Qué te llevás? ¿Qué distinción querés recordar? ¿Qué vas a probar esta semana?"
         rows={compact ? 3 : 4}
-        className="mt-2 w-full rounded-lg border border-border bg-bg p-3 text-sm text-ink placeholder:text-muted transition-shadow focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-light)] focus:outline-none"
+        className="mt-2 w-full rounded-lg border border-border bg-bg p-3 text-sm text-ink placeholder:text-muted transition-shadow focus:border-brand focus:shadow-[0_0_0_3px_var(--brand-light)] focus:outline-none"
       />
       <div className="mt-2 flex items-center gap-3">
         <button
@@ -55,7 +55,7 @@ export default function LessonNote({
             setDraft(null);
             setJustSaved(true);
           }}
-          className="rounded-lg bg-accent px-4 py-1.5 text-sm font-bold text-white transition-all hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:active:scale-100 disabled:opacity-40"
+          className="rounded-lg bg-brand px-4 py-1.5 text-sm font-bold text-white transition-all hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:active:scale-100 disabled:opacity-40"
         >
           Guardar nota
         </button>

@@ -7,45 +7,52 @@
  * Documentado en profundidad en DESIGN_SYSTEM.md (raíz del repo). Resumen de
  * las decisiones que viven en este archivo:
  *
- * · Un solo verde protagonista (`--accent`) para "correcto / progreso /
- *   acción principal": color de crecimiento y confianza, coherente con un
- *   programa de desarrollo personal. Se evita el rojo/naranja de urgencia
- *   típico del e-commerce — no encaja con un tono reflexivo.
- * · `--reward` (dorado) es un color EXCLUSIVO para XP e insights, separado
- *   a propósito del verde de "correcto": refuerza que el programa premia la
- *   práctica y el pensar, no solo acertar (los ejercicios de reflexión no
- *   tienen "correcto", pero sí generan recompensa).
- * · Una sola sombra elevada (`--shadow-raised`) reservada para la ÚNICA
- *   tarjeta protagonista de cada pantalla (ej. "seguí acá" en el mapa). El
- *   resto usa borde plano nomás, para que el ojo no compita entre varias
- *   tarjetas con igual peso visual (principio de Von Restorff).
- * · Motion reservado para momentos de recompensa/transición (feedback de
- *   ejercicio, cierre de lección) — nunca sobre contenido que hay que leer
- *   con atención. Respeta `prefers-reduced-motion`.
+ * · Paleta cálida y contemplativa (parquet/pergamino + violeta profundo),
+ *   no la estética "app de hábitos" verde-brillante-sobre-blanco: el
+ *   contenido es ontología del lenguaje, no gamificación infantil.
+ * · CUATRO colores, CUATRO significados, sin superposición:
+ *     - `--brand` (violeta ciruela) → identidad, navegación, acciones,
+ *       ilustraciones. Es "esto es de la app", no un juicio de valor.
+ *     - `--accent` (verde pino) → ÚNICA para "esto está bien/correcto".
+ *       Reservado así a propósito: si apareciera en cada botón, perdería
+ *       el efecto de recompensa cuando de verdad acertás algo.
+ *     - `--reward` (dorado) → logro (XP) e insight propio (reflexiones):
+ *       lo que el usuario generó o ganó, no lo que la app decidió mostrar.
+ *     - `--error` (terracota) → incorrecto. Nunca se reusa para otra cosa.
+ * · Una sola sombra elevada (`--shadow-raised`, con tinte de marca)
+ *   reservada para la ÚNICA tarjeta protagonista de cada pantalla.
+ * · Motion reservado para momentos de recompensa/transición — nunca sobre
+ *   contenido que hay que leer con atención. Respeta `prefers-reduced-motion`.
  */
 :root {
-  --bg: #fafaf7;
-  --surface: #ffffff;
-  --ink: #1a1a1a;
-  --ink-soft: #2a2a2a;
-  --muted: #6b6b6b;
-  --border: #e2e2dc;
-  --border-soft: #efefe9;
+  --bg: #f7f2ea;
+  --surface: #fffdf8;
+  --ink: #221e1b;
+  --ink-soft: #3a332c;
+  --muted: #79706a;
+  --border: #e6ddd0;
+  --border-soft: #f0e9dd;
 
-  --accent: #008859;
-  --accent-ink: #00471b;
-  --accent-light: #e6f4ee;
+  /* Identidad de marca: navegación, acciones, ilustraciones. */
+  --brand: #4b3866;
+  --brand-ink: #2c2044;
+  --brand-light: #efe9f6;
 
-  --error: #c2402a;
-  --error-light: #fbeae6;
+  /* Único uso: confirmación de que algo está bien. */
+  --accent: #3d6b54;
+  --accent-ink: #204030;
+  --accent-light: #e7ede9;
 
-  /* Dorado exclusivo de recompensa (XP, insights) — nunca para "correcto". */
-  --reward: #8a6207;
-  --reward-ink: #4a3404;
-  --reward-light: #fbf1d6;
+  --error: #b23a2e;
+  --error-light: #f8e7e3;
 
-  --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.08);
-  --shadow-raised: 0 12px 32px rgba(0, 136, 89, 0.16);
+  /* Logro (XP) e insight propio — lo que el usuario ganó o escribió. */
+  --reward: #9c6b1f;
+  --reward-ink: #5c3f10;
+  --reward-light: #f8eeda;
+
+  --shadow-card: 0 6px 20px rgba(34, 30, 27, 0.08);
+  --shadow-raised: 0 12px 32px rgba(75, 56, 102, 0.18);
 
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -53,45 +60,61 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1411;
-    --surface: #131b17;
-    --ink: #f2f4f1;
-    --ink-soft: #dde0dc;
-    --muted: #92978f;
-    --border: #232c26;
-    --border-soft: #1b231e;
-    --accent: #2dd68b;
-    --accent-ink: #dcf5e7;
-    --accent-light: #14271e;
-    --error: #f0705a;
-    --error-light: #2e1a15;
-    --reward: #f2c14e;
-    --reward-ink: #ffe9ad;
-    --reward-light: #2e2410;
-    --shadow-raised: 0 12px 32px rgba(45, 214, 139, 0.14);
+    --bg: #18140f;
+    --surface: #221c17;
+    --ink: #f4efe8;
+    --ink-soft: #ddd3c8;
+    --muted: #a89c8e;
+    --border: #372f27;
+    --border-soft: #2a231d;
+
+    --brand: #b6a0e3;
+    --brand-ink: #ece4f8;
+    --brand-light: #2b2340;
+
+    --accent: #6fbf94;
+    --accent-ink: #d9f0e3;
+    --accent-light: #1d3327;
+
+    --error: #e88a72;
+    --error-light: #3a2018;
+
+    --reward: #e0ac52;
+    --reward-ink: #fbe6bb;
+    --reward-light: #3a2c14;
+
+    --shadow-raised: 0 12px 32px rgba(182, 160, 227, 0.16);
   }
 }
 
 :root[data-theme="dark"] {
-  --bg: #0e1411;
-  --surface: #131b17;
-  --ink: #f2f4f1;
-  --ink-soft: #dde0dc;
-  --muted: #92978f;
-  --border: #232c26;
-  --border-soft: #1b231e;
-  --accent: #2dd68b;
-  --accent-ink: #dcf5e7;
-  --accent-light: #14271e;
-  --error: #f0705a;
-  --error-light: #2e1a15;
-  --reward: #f2c14e;
-  --reward-ink: #ffe9ad;
-  --reward-light: #2e2410;
-  --shadow-raised: 0 12px 32px rgba(45, 214, 139, 0.14);
+  --bg: #18140f;
+  --surface: #221c17;
+  --ink: #f4efe8;
+  --ink-soft: #ddd3c8;
+  --muted: #a89c8e;
+  --border: #372f27;
+  --border-soft: #2a231d;
+
+  --brand: #b6a0e3;
+  --brand-ink: #ece4f8;
+  --brand-light: #2b2340;
+
+  --accent: #6fbf94;
+  --accent-ink: #d9f0e3;
+  --accent-light: #1d3327;
+
+  --error: #e88a72;
+  --error-light: #3a2018;
+
+  --reward: #e0ac52;
+  --reward-ink: #fbe6bb;
+  --reward-light: #3a2c14;
+
+  --shadow-raised: 0 12px 32px rgba(182, 160, 227, 0.16);
 }
 
-/* Mapeo de tokens → utilidades Tailwind v4 (bg-bg, text-ink, border-reward…) */
+/* Mapeo de tokens → utilidades Tailwind v4 (bg-bg, text-ink, border-brand…) */
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -99,6 +122,9 @@
   --color-ink-soft: var(--ink-soft);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-light: var(--brand-light);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-light: var(--accent-light);
@@ -117,11 +143,11 @@ body {
   font-family: var(--font-red-hat), system-ui, sans-serif;
 }
 
-/* Foco de teclado consistente en toda la app: un único estilo en vez de que
+/* Foco de teclado consistente en toda la app — un único estilo en vez de que
    cada componente decida el suyo — la predictibilidad reduce la carga
    cognitiva de navegar por teclado o lector de pantalla. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--brand);
   outline-offset: 2px;
   border-radius: 6px;
 }

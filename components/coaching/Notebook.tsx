@@ -83,7 +83,7 @@ export default function Notebook({ chapters }: { chapters: NotebookChapter[] }) 
                   {reflections.length > 0 && (
                     <div className="mt-3 grid gap-3">
                       {reflections.map((r) => (
-                        <blockquote key={r.idx} className="border-l-4 border-accent bg-accent-light p-3">
+                        <blockquote key={r.idx} className="border-l-4 border-reward bg-reward-light p-3">
                           <p className="text-xs text-muted">{r.prompt}</p>
                           <p className="mt-1 whitespace-pre-wrap text-sm text-ink">{r.text}</p>
                         </blockquote>

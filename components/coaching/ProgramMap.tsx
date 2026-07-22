@@ -41,8 +41,8 @@ export default function ProgramMap({ chapters }: { chapters: MapChapter[] }) {
   return (
     <div className="grid gap-8">
       {ready && nextChapter && nextLesson && (
-        <div className="rounded-2xl border border-accent bg-accent-light p-5 shadow-[var(--shadow-raised)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent-ink">
+        <div className="rounded-2xl border border-brand bg-brand-light p-5 shadow-[var(--shadow-raised)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-brand-ink">
             {started ? "Seguí donde dejaste" : "Empezá acá"}
           </p>
           <p className="mt-1.5 flex items-center gap-2 font-display text-xl font-bold text-ink">
@@ -69,7 +69,7 @@ export default function ProgramMap({ chapters }: { chapters: MapChapter[] }) {
               <Link
                 href={`/${chapter.slug}`}
                 className={`flex items-center gap-4 rounded-xl border bg-surface p-4 transition-colors ${
-                  isCurrent ? "border-accent" : "border-border hover:border-accent/60"
+                  isCurrent ? "border-brand" : "border-border hover:border-brand/60"
                 }`}
               >
                 <span

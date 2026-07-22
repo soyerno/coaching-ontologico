@@ -18,7 +18,7 @@ export default function ConceptSlide({
 }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent">
+      <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand">
         Concepto 💡
       </p>
       <h2 className="mt-1 font-display text-lg font-bold leading-snug text-ink">
@@ -37,8 +37,8 @@ export default function ConceptSlide({
         </div>
       )}
       {card.example && (
-        <div className="mt-4 rounded-xl border-l-4 border-accent bg-accent-light p-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-accent">
+        <div className="mt-4 rounded-xl border-l-4 border-brand bg-brand-light p-3">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand">
             Ejemplo
           </p>
           <p className="mt-1 text-sm leading-relaxed text-ink">{card.example}</p>

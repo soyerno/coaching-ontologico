@@ -15,17 +15,34 @@ tres reglas.
 
 ## 1. Por qué esta paleta
 
+La primera versión usaba un solo verde brillante para todo: navegación,
+botones, "correcto", fondo del logo. Funcionaba, pero leía como una app de
+hábitos genérica (el clon-de-Duolingo de siempre) — no como un programa de
+ontología del lenguaje. La paleta actual es cálida y contemplativa (fondo
+tipo pergamino, en vez de blanco frío) y separa **cuatro colores para
+cuatro significados distintos**, sin superposición:
+
 | Token | Uso | Por qué |
 |---|---|---|
-| `--accent` (verde) | Correcto, progreso, acción principal | Verde = crecimiento y confianza. Es el color de "seguir adelante", coherente con un programa de desarrollo personal. Se evitó a propósito el rojo/naranja de urgencia típico del e-commerce o de las apps de hábitos agresivas — no encaja con un tono reflexivo. |
-| `--reward` (dorado) | XP, insights de reflexión | **Exclusivo** — nunca se usa para "correcto". La separación es deliberada: si XP fuera verde también, el cerebro fusionaría "acertaste" con "ganaste algo", y en un programa donde los ejercicios de reflexión no tienen respuesta correcta, eso sería directamente falso. El dorado dice "esto vale, more allá de si acertaste". |
-| `--error` (rojo) | Respuesta incorrecta | Se usa solo ahí, nunca para advertencias generales — para que cuando aparece, el usuario sepa exactamente qué significa sin tener que leer el texto. |
-| `--ink` / `--muted` / `--border` | Jerarquía tipográfica y de contornos | Escala de grises deliberadamente corta (3 niveles de texto, no 6) — menos decisiones de "qué tan importante es esto" para quien escribe contenido nuevo. |
+| `--brand` (violeta ciruela) | Navegación, botones, tarjeta "seguí acá", diagramas | La identidad de la app: "esto es de acá", no un juicio de valor sobre si algo está bien o mal. El violeta evoca introspección/profundidad (filosofía, contemplación) sin caer en el verde-gamificado ni en el azul-corporativo — y contra el fondo cálido de pergamino, el contraste frío/cálido le da carácter propio en vez de mimetizarse con cualquier otra app. |
+| `--accent` (verde pino, mucho más apagado que antes) | **Solo** confirmación de que una respuesta es correcta | Reservado a propósito para un único momento: acertar. Si el mismo verde apareciera en cada botón (como antes), perdería el efecto de recompensa — acertar tiene que sentirse distinto de simplemente navegar. |
+| `--reward` (dorado cálido) | XP, e insight propio (reflexiones) | Lo que el usuario generó o ganó — no lo que la app decidió mostrar. Deliberadamente distinto del verde: las reflexiones no tienen "correcto" posible, pero sí merecen su propio color de logro. |
+| `--error` (terracota/ladrillo) | Respuesta incorrecta | Se usa solo ahí. Un rojo más cálido que el clásico rojo-alarma, para que "no exactamente" se sienta informativo, no punitivo. |
+| `--ink` / `--muted` / `--border` | Jerarquía tipográfica y de contornos | Neutros cálidos (no violeta-tintados) — el color de marca aparece solo donde se lo llama explícitamente, nunca de fondo en cada superficie neutra. Escala de grises deliberadamente corta (3 niveles de texto), menos decisiones de "qué tan importante es esto" para quien escribe contenido nuevo. |
+
+La regla de asignación, en una frase: **`brand` es "esto podés tocar/es de
+la app"; `accent` es "esto salió bien"; `reward` es "esto lo ganaste vos";
+`error` es "esto no era"**. Un elemento antes de que el usuario responda
+(una opción seleccionada, un hover, un link) siempre es `brand` — recién
+después de comprobar la respuesta puede pasar a `accent` o `error`. Los
+íconos de "completado" (checks permanentes en el camino de un capítulo)
+son la única excepción que queda en `accent` de forma persistente: un
+check ✓ es, culturalmente, casi siempre verde.
 
 Cada color tiene **una sola** utilidad Tailwind detrás (`bg-*`, `text-*`,
-`border-*` se generan del mismo token) — no hay "verde de botón" distinto
-del "verde de acierto". Si cambia `--accent`, cambia en todos lados a la
-vez, y no puede desincronizarse.
+`border-*` se generan del mismo token) — no hay "violeta de botón" distinto
+del "violeta de navegación". Si cambia `--brand`, cambia en todos lados a
+la vez, y no puede desincronizarse.
 
 ### Modo oscuro
 

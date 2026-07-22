@@ -5,7 +5,7 @@ export default function DiagramEscalera() {
   return (
     <Frame label="Escalera de inferencias" viewBox="0 0 580 310">
       <ArrowDefs id="esc-a" />
-      <Box x={20} y={234} w={165} h={52} label="Hechos" sub="lo que una cámara grabaría" accent />
+      <Box x={20} y={234} w={165} h={52} label="Hechos" sub="lo que una cámara grabaría" highlight />
       <Box x={155} y={168} w={165} h={52} label="Selecciono" sub="recorto algunos datos" />
       <Box x={290} y={102} w={165} h={52} label="Interpreto" sub="les doy mi sentido e historia" />
       <Box x={415} y={36} w={165} h={52} label="Concluyo y actúo" sub="juicios, decisiones" />

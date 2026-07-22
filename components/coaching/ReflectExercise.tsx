@@ -23,7 +23,7 @@ export default function ReflectExercise({
 
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.1em] text-accent">
+      <p className="text-xs font-semibold uppercase tracking-[0.1em] text-brand">
         Para pensar ✍️
       </p>
       <h2 className="mt-1 font-display text-lg font-bold leading-snug text-ink">
@@ -35,7 +35,7 @@ export default function ReflectExercise({
         onChange={(e) => setText(e.target.value)}
         placeholder={exercise.placeholder ?? "Escribí acá, para vos…"}
         rows={5}
-        className="mt-4 w-full rounded-xl border border-border bg-surface p-3 text-sm text-ink placeholder:text-muted transition-shadow focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-light)] focus:outline-none"
+        className="mt-4 w-full rounded-xl border border-border bg-surface p-3 text-sm text-ink placeholder:text-muted transition-shadow focus:border-brand focus:shadow-[0_0_0_3px_var(--brand-light)] focus:outline-none"
       />
       <p className="mt-1 text-xs text-muted">
         Esto queda solo en tu navegador — es tu cuaderno, no un examen.

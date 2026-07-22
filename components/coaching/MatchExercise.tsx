@@ -68,8 +68,8 @@ export default function MatchExercise({
                   isMatched
                     ? "border-accent bg-accent-light text-muted opacity-60"
                     : selLeft === i
-                      ? "border-accent bg-accent-light font-medium text-ink"
-                      : "border-border bg-surface text-ink hover:border-accent"
+                      ? "border-brand bg-brand-light font-medium text-ink"
+                      : "border-border bg-surface text-ink hover:border-brand"
                 }`}
               >
                 {p.left}
@@ -91,7 +91,7 @@ export default function MatchExercise({
                     ? "border-accent bg-accent-light text-muted opacity-60"
                     : wrongRight === right
                       ? "border-error bg-error-light text-ink"
-                      : "border-border bg-surface text-ink hover:border-accent"
+                      : "border-border bg-surface text-ink hover:border-brand"
                 }`}
               >
                 {right}

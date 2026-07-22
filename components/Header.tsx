@@ -37,8 +37,8 @@ export default function Header() {
                 aria-current={active ? "page" : undefined}
                 className={`rounded-md px-2.5 py-1 text-sm transition-colors ${
                   active
-                    ? "bg-accent-light text-accent-ink"
-                    : "text-ink-soft hover:bg-accent-light hover:text-accent-ink"
+                    ? "bg-brand-light text-brand-ink"
+                    : "text-ink-soft hover:bg-brand-light hover:text-brand-ink"
                 }`}
               >
                 {n.label}

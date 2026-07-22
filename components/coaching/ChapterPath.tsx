@@ -45,8 +45,8 @@ export default function ChapterPath({
               locked
                 ? "border-border bg-surface opacity-60"
                 : state === "done"
-                  ? "border-border bg-surface hover:border-accent"
-                  : "border-accent bg-accent-light shadow-[var(--shadow-raised)] hover:opacity-90"
+                  ? "border-border bg-surface hover:border-brand"
+                  : "border-brand bg-brand-light shadow-[var(--shadow-raised)] hover:opacity-90"
             }`}
           >
             <p className="text-[11px] font-semibold uppercase tracking-wide text-muted">
@@ -58,7 +58,7 @@ export default function ChapterPath({
             </h3>
             <p className="mt-1 text-sm text-muted">{lesson.description}</p>
             {!locked && (
-              <p className="mt-2 text-sm font-medium text-accent">
+              <p className="mt-2 text-sm font-medium text-brand">
                 {state === "done" ? "Repasar →" : "Empezar →"}
               </p>
             )}
@@ -73,7 +73,7 @@ export default function ChapterPath({
                 state === "done"
                   ? "border-accent bg-accent text-white"
                   : state === "current"
-                    ? "border-accent bg-surface text-accent"
+                    ? "border-brand bg-surface text-brand"
                     : "border-border bg-surface text-muted"
               }`}
             >

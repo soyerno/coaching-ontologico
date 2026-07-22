@@ -20,7 +20,7 @@ export default function TextLink({
 }) {
   const sizeClass = size === "xs" ? "text-xs" : "text-sm";
   return (
-    <Link href={href} className={`font-medium text-accent hover:underline ${sizeClass} ${className}`}>
+    <Link href={href} className={`font-medium text-brand hover:underline ${sizeClass} ${className}`}>
       {children}
     </Link>
   );

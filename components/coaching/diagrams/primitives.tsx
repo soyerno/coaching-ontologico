@@ -2,8 +2,10 @@ import type { ReactNode } from "react";
 
 /**
  * Primitivas SVG compartidas por los diagramas didácticos del programa de
- * coaching. Usan los tokens de tema (var(--accent), var(--ink)…) así los
- * diagramas se adaptan solos a claro/oscuro.
+ * coaching. Usan los tokens de tema (var(--brand), var(--ink)…) así los
+ * diagramas se adaptan solos a claro/oscuro. Los diagramas son ilustración
+ * conceptual, no una señal de "correcto" — por eso usan `--brand` (identidad
+ * de marca) y no `--accent` (reservado exclusivamente para aciertos).
  */
 
 export function Frame({
@@ -42,7 +44,7 @@ export function ArrowDefs({ id, muted }: { id: string; muted?: boolean }) {
         markerHeight="7"
         orient="auto-start-reverse"
       >
-        <path d="M0 0 L10 5 L0 10 z" fill={muted ? "var(--muted)" : "var(--accent)"} />
+        <path d="M0 0 L10 5 L0 10 z" fill={muted ? "var(--muted)" : "var(--brand)"} />
       </marker>
     </defs>
   );
@@ -55,7 +57,7 @@ export function Box({
   h,
   label,
   sub,
-  accent = false,
+  highlight = false,
 }: {
   x: number;
   y: number;
@@ -63,7 +65,8 @@ export function Box({
   h: number;
   label: string;
   sub?: string;
-  accent?: boolean;
+  /** Marca la caja protagonista del diagrama con el color de marca. */
+  highlight?: boolean;
 }) {
   const cx = x + w / 2;
   const cy = y + h / 2;
@@ -75,8 +78,8 @@ export function Box({
         width={w}
         height={h}
         rx={12}
-        fill={accent ? "var(--accent-light)" : "var(--surface)"}
-        stroke={accent ? "var(--accent)" : "var(--border)"}
+        fill={highlight ? "var(--brand-light)" : "var(--surface)"}
+        stroke={highlight ? "var(--brand)" : "var(--border)"}
         strokeWidth={1.5}
       />
       <text
@@ -120,7 +123,7 @@ export function Arrow({
       <path
         d={d}
         fill="none"
-        stroke={muted ? "var(--muted)" : "var(--accent)"}
+        stroke={muted ? "var(--muted)" : "var(--brand)"}
         strokeWidth={2}
         strokeDasharray={dashed ? "5 4" : undefined}
         markerEnd={`url(#${markerId})`}

@@ -6,7 +6,7 @@ export default function DiagramValores() {
     <Frame label="Valores declarados y valores practicados" viewBox="0 0 560 250">
       <ArrowDefs id="val-a" />
       <Box x={25} y={60} w={215} h={70} label="Valores declarados" sub="lo que digo que me importa" />
-      <Box x={320} y={60} w={215} h={70} label="Valores practicados" sub="lo que mis acciones muestran" accent />
+      <Box x={320} y={60} w={215} h={70} label="Valores practicados" sub="lo que mis acciones muestran" highlight />
       <Arrow
         d="M242 95 L 318 95"
         markerId="val-a"
