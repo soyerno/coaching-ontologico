@@ -46,7 +46,7 @@ export default function ChapterPath({
                 ? "border-border bg-surface opacity-60"
                 : state === "done"
                   ? "border-border bg-surface hover:border-accent"
-                  : "border-accent bg-accent-light shadow-[var(--shadow-card)] hover:opacity-90"
+                  : "border-accent bg-accent-light shadow-[var(--shadow-raised)] hover:opacity-90"
             }`}
           >
             <p className="text-[11px] font-semibold uppercase tracking-wide text-muted">

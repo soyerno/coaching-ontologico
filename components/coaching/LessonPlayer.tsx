@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Exercise } from "@/lib/coaching/types";
 import { XP_LESSON_BONUS, XP_PER_EXERCISE, lessonKey } from "@/lib/coaching/types";
 import { useCoachingProgress } from "@/lib/coaching/progress";
+import ProgressBar from "@/components/ui/ProgressBar";
 import ConceptSlide from "./ConceptSlide";
 import OptionsExercise from "./OptionsExercise";
 import ClassifyExercise from "./ClassifyExercise";
@@ -33,7 +34,10 @@ export default function LessonPlayer({
 }) {
   const { progress, completeLesson, saveReflection, isDone } = useCoachingProgress();
   const [idx, setIdx] = useState(0);
-  const [feedback, setFeedback] = useState<{ correct: boolean; explain: string } | null>(null);
+  const [feedback, setFeedback] = useState<{
+    variant: "correct" | "incorrect" | "insight";
+    explain: string;
+  } | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
   const [finished, setFinished] = useState(false);
   const [xpEarned, setXpEarned] = useState(0);
@@ -43,9 +47,9 @@ export default function LessonPlayer({
   // Las tarjetas de teoría no cuentan para aciertos ni XP: solo lo ejercitado.
   const answerable = exercises.filter((e) => e.kind !== "concept").length;
 
-  function handleAnswered(correct: boolean, explain: string) {
+  function handleAnswered(correct: boolean, explain: string, insight?: boolean) {
     if (correct) setCorrectCount((c) => c + 1);
-    setFeedback({ correct, explain });
+    setFeedback({ variant: insight ? "insight" : correct ? "correct" : "incorrect", explain });
   }
 
   function handleContinue() {
@@ -86,19 +90,13 @@ export default function LessonPlayer({
         >
           ✕
         </Link>
-        <div
-          role="progressbar"
-          aria-valuenow={Math.round(pct)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          className="h-3 flex-1 overflow-hidden rounded-full bg-border"
-        >
-          <div
-            className="h-full rounded-full bg-accent transition-[width] duration-300"
-            style={{ width: `${pct}%` }}
-          />
-        </div>
-        <span className="text-xs tabular-nums text-muted">
+        <ProgressBar
+          pct={pct}
+          size="lg"
+          label={`Ejercicio ${idx + 1} de ${exercises.length}`}
+          className="flex-1"
+        />
+        <span aria-hidden className="text-xs tabular-nums text-muted">
           {idx + 1}/{exercises.length}
         </span>
       </div>
@@ -147,14 +145,14 @@ export default function LessonPlayer({
           savedText={progress.reflections[reflectKey]}
           onAnswered={(text) => {
             saveReflection(reflectKey, text);
-            handleAnswered(true, exercise.insight);
+            handleAnswered(true, exercise.insight, true);
           }}
         />
       )}
 
       {feedback && (
         <ExerciseFeedback
-          correct={feedback.correct}
+          variant={feedback.variant}
           explain={feedback.explain}
           isLast={isLast}
           onContinue={handleContinue}

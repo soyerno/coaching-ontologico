@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageShell from "@/components/PageShell";
+import TextLink from "@/components/ui/TextLink";
 import ChapterPath, { type PathLesson } from "@/components/coaching/ChapterPath";
 import { PROGRAMA, flatLessonKeys, getChapter } from "@/lib/coaching/programa";
 
@@ -52,9 +52,7 @@ export default async function CapituloPage({
       maxWidth="max-w-3xl"
     >
       <div className="mb-6">
-        <Link href="/" className="text-sm font-medium text-accent hover:underline">
-          ← Volver al programa
-        </Link>
+        <TextLink href="/">← Volver al programa</TextLink>
       </div>
       <ChapterPath
         chapterSlug={chapter.slug}

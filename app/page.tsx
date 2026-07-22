@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import PageShell from "@/components/PageShell";
 import CoachingStats from "@/components/coaching/CoachingStats";
 import ProgramMap, { type MapChapter } from "@/components/coaching/ProgramMap";
@@ -23,7 +22,7 @@ export default function CoachingPage() {
     title: c.title,
     subtitle: c.subtitle,
     icon: c.icon,
-    lessonKeys: c.lessons.map((l) => `${c.slug}/${l.id}`),
+    lessons: c.lessons.map((l) => ({ id: l.id, title: l.title })),
   }));
 
   return (
@@ -33,36 +32,20 @@ export default function CoachingPage() {
       meta={`${PROGRAMA.length} capítulos · ${totalLessons()} lecciones · ${totalExercises()} ejercicios · progreso, XP y racha se guardan en tu navegador`}
       maxWidth="max-w-3xl"
     >
-      <div className="mb-4">
+      <div className="mb-8">
         <CoachingStats totalLessons={totalLessons()} />
       </div>
 
-      <div className="mb-8 flex justify-end gap-4">
-        <Link
-          href="/glosario"
-          className="text-sm font-medium text-accent hover:underline"
-        >
-          Glosario 📖
-        </Link>
-        <Link
-          href="/notas"
-          className="text-sm font-medium text-accent hover:underline"
-        >
-          Mi cuaderno 📓
-        </Link>
-      </div>
-
-      <div className="mb-8 rounded-xl border border-border bg-surface p-4 text-sm text-muted">
-        <p>
-          <strong className="text-ink">Cómo funciona:</strong> las lecciones se
-          desbloquean en orden, como en Duolingo. Cada una mezcla ejercicios de
-          opción múltiple, verdadero/falso, clasificar, unir pares y reflexiones
-          escritas — porque el coaching ontológico no se memoriza: se piensa. Una
-          lección por día alcanza.
-        </p>
-      </div>
-
       <ProgramMap chapters={chapters} />
+
+      {/* Contexto de una sola vez, sin caja ni sombra: no compite con la
+          tarjeta "seguí acá" de arriba, pero queda a mano para quien recién
+          llega y todavía no sabe cómo se juega. */}
+      <p className="mt-10 text-center text-xs text-muted">
+        Las lecciones se desbloquean en orden. Cada una mezcla opción
+        múltiple, verdadero/falso, clasificar, unir pares y reflexiones
+        escritas — el coaching ontológico no se memoriza, se piensa.
+      </p>
     </PageShell>
   );
 }

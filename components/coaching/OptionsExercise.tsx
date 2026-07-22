@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Button from "@/components/ui/Button";
 
 /**
  * Ejercicio de opciones únicas — cubre `choice` (multiple choice) y
@@ -23,7 +24,7 @@ export default function OptionsExercise({
 
   function optionClasses(i: number): string {
     const base =
-      "w-full rounded-xl border px-4 py-3 text-left text-sm transition-colors";
+      "w-full rounded-xl border px-4 py-3 text-left text-sm transition-all active:scale-[0.99]";
     if (!checked) {
       return `${base} ${
         selected === i
@@ -53,17 +54,17 @@ export default function OptionsExercise({
         ))}
       </div>
       {!checked && (
-        <button
-          type="button"
+        <Button
           disabled={selected === null}
           onClick={() => {
             setChecked(true);
             onAnswered(selected === correct);
           }}
-          className="mt-6 w-full rounded-xl bg-accent px-4 py-2.5 font-display font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:px-8"
+          responsive
+          className="mt-6"
         >
           Comprobar
-        </button>
+        </Button>
       )}
     </div>
   );

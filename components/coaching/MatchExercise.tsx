@@ -47,7 +47,7 @@ export default function MatchExercise({
     }
   }
 
-  const btn = "w-full rounded-xl border px-3 py-2.5 text-left text-sm transition-colors";
+  const btn = "w-full rounded-xl border px-3 py-2.5 text-left text-sm transition-all active:scale-[0.98]";
 
   return (
     <div>

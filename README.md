@@ -5,9 +5,9 @@ Programa interactivo estilo Duolingo para aprender coaching ontológico
 148 ejercicios, 27 tarjetas de teoría con 9 diagramas, glosario de 39
 distinciones y bibliografía por capítulo.
 
-App Next.js 16 independiente, extraída de la sección `/coaching` de la
-bitácora. Sin backend: progreso, XP, racha, reflexiones y notas viven en
-`localStorage` del navegador.
+App Next.js 16 independiente, con su propio sistema de diseño (ver
+[`DESIGN_SYSTEM.md`](./DESIGN_SYSTEM.md)). Sin backend: progreso, XP,
+racha, reflexiones y notas viven en `localStorage` del navegador.
 
 ## Desarrollo
 
@@ -21,12 +21,11 @@ pnpm build
 
 ## Deploy en Vercel
 
-Este directorio es una app autocontenida dentro del repo `soyerno/bitacora`.
+Este repo tiene la app en su raíz — no requiere configurar Root Directory.
 
-1. En [vercel.com/new](https://vercel.com/new), importar el repo `soyerno/bitacora`.
-2. En **Root Directory**, elegir `coaching-app/`.
-3. Framework preset: **Next.js** (autodetectado). Sin variables de entorno requeridas.
-4. Deploy.
+1. En [vercel.com/new](https://vercel.com/new), importar `soyerno/coaching-ontologico`.
+2. Framework preset: **Next.js** (autodetectado). Sin variables de entorno requeridas.
+3. Deploy.
 
 O por CLI, desde este directorio:
 

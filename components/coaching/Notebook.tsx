@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import Button from "@/components/ui/Button";
+import TextLink from "@/components/ui/TextLink";
 import { useCoachingProgress } from "@/lib/coaching/progress";
 import LessonNote from "./LessonNote";
 
@@ -51,12 +52,9 @@ export default function Notebook({ chapters }: { chapters: NotebookChapter[] }) 
           Acá se van a juntar tus reflexiones escritas y las notas que dejes al
           terminar cada lección. Todo queda solo en tu navegador.
         </p>
-        <Link
-          href="/"
-          className="mt-4 inline-block rounded-xl bg-accent px-6 py-2.5 font-display font-bold text-white transition-opacity hover:opacity-90"
-        >
+        <Button href="/" className="mt-4">
           Ir al programa
-        </Link>
+        </Button>
       </div>
     );
   }
@@ -78,12 +76,9 @@ export default function Notebook({ chapters }: { chapters: NotebookChapter[] }) 
                 <article key={l.id} className="rounded-xl border border-border bg-surface p-4">
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="font-display text-base font-bold text-ink">{l.title}</h3>
-                    <Link
-                      href={`/${key}`}
-                      className="shrink-0 text-xs font-medium text-accent hover:underline"
-                    >
+                    <TextLink href={`/${key}`} size="xs" className="shrink-0">
                       Repasar →
-                    </Link>
+                    </TextLink>
                   </div>
                   {reflections.length > 0 && (
                     <div className="mt-3 grid gap-3">

@@ -81,6 +81,18 @@ export function nextStreak(streak: CoachingProgress["streak"]): CoachingProgress
   return { count: 1, last: today };
 }
 
+/**
+ * True si hay una racha vigente que se pierde si hoy no se completa ninguna
+ * lección (se completó ayer, no hoy). Aversión a la pérdida aplicada de
+ * forma honesta: solo refleja el estado real, nunca una urgencia inventada.
+ */
+export function isStreakAtRisk(streak: CoachingProgress["streak"]): boolean {
+  if (streak.count === 0 || !streak.last) return false;
+  const today = todayISO();
+  if (streak.last === today) return false;
+  return isYesterday(streak.last);
+}
+
 // ── External store: snapshot cacheado + invalidación por evento ──────────────
 
 let snapshot: CoachingProgress = EMPTY;

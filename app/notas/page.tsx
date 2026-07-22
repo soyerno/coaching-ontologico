@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import TextLink from "@/components/ui/TextLink";
 import Notebook, { type NotebookChapter } from "@/components/coaching/Notebook";
 import { PROGRAMA } from "@/lib/coaching/programa";
 
@@ -32,9 +32,7 @@ export default function NotasPage() {
       maxWidth="max-w-3xl"
     >
       <div className="mb-6">
-        <Link href="/" className="text-sm font-medium text-accent hover:underline">
-          ← Volver al programa
-        </Link>
+        <TextLink href="/">← Volver al programa</TextLink>
       </div>
       <Notebook chapters={chapters} />
     </PageShell>

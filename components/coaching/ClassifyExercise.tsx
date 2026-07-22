@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ClassifyExercise as ClassifyData } from "@/lib/coaching/types";
+import Button from "@/components/ui/Button";
 
 /**
  * Ejercicio de clasificación: cada item se asigna a una de dos categorías
@@ -24,7 +25,7 @@ export default function ClassifyExercise({
 
   function catButtonClasses(itemIdx: number, cat: 0 | 1): string {
     const chosen = answers[itemIdx] === cat;
-    const base = "rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-colors";
+    const base = "rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-all active:scale-[0.97]";
     if (!checked) {
       return `${base} ${
         chosen
@@ -75,17 +76,17 @@ export default function ClassifyExercise({
         ))}
       </div>
       {!checked && (
-        <button
-          type="button"
+        <Button
           disabled={!allAssigned}
           onClick={() => {
             setChecked(true);
             onAnswered(answers.every((a, i) => a === exercise.items[i].cat));
           }}
-          className="mt-6 w-full rounded-xl bg-accent px-4 py-2.5 font-display font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:px-8"
+          responsive
+          className="mt-6"
         >
           Comprobar
-        </button>
+        </Button>
       )}
     </div>
   );

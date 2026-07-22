@@ -1,8 +1,28 @@
 @import "tailwindcss";
 
-/* Tokens de la app — mismo sistema visual que la bitácora de origen.
-   Modo oscuro: automático por prefers-color-scheme, con override manual
-   vía data-theme (ThemeToggle). */
+/*
+ * ============================================================================
+ * Sistema de diseño — Coaching Ontológico
+ * ============================================================================
+ * Documentado en profundidad en DESIGN_SYSTEM.md (raíz del repo). Resumen de
+ * las decisiones que viven en este archivo:
+ *
+ * · Un solo verde protagonista (`--accent`) para "correcto / progreso /
+ *   acción principal": color de crecimiento y confianza, coherente con un
+ *   programa de desarrollo personal. Se evita el rojo/naranja de urgencia
+ *   típico del e-commerce — no encaja con un tono reflexivo.
+ * · `--reward` (dorado) es un color EXCLUSIVO para XP e insights, separado
+ *   a propósito del verde de "correcto": refuerza que el programa premia la
+ *   práctica y el pensar, no solo acertar (los ejercicios de reflexión no
+ *   tienen "correcto", pero sí generan recompensa).
+ * · Una sola sombra elevada (`--shadow-raised`) reservada para la ÚNICA
+ *   tarjeta protagonista de cada pantalla (ej. "seguí acá" en el mapa). El
+ *   resto usa borde plano nomás, para que el ojo no compita entre varias
+ *   tarjetas con igual peso visual (principio de Von Restorff).
+ * · Motion reservado para momentos de recompensa/transición (feedback de
+ *   ejercicio, cierre de lección) — nunca sobre contenido que hay que leer
+ *   con atención. Respeta `prefers-reduced-motion`.
+ */
 :root {
   --bg: #fafaf7;
   --surface: #ffffff;
@@ -11,12 +31,24 @@
   --muted: #6b6b6b;
   --border: #e2e2dc;
   --border-soft: #efefe9;
+
   --accent: #008859;
   --accent-ink: #00471b;
   --accent-light: #e6f4ee;
+
   --error: #c2402a;
   --error-light: #fbeae6;
+
+  /* Dorado exclusivo de recompensa (XP, insights) — nunca para "correcto". */
+  --reward: #8a6207;
+  --reward-ink: #4a3404;
+  --reward-light: #fbf1d6;
+
   --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --shadow-raised: 0 12px 32px rgba(0, 136, 89, 0.16);
+
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,6 +65,10 @@
     --accent-light: #14271e;
     --error: #f0705a;
     --error-light: #2e1a15;
+    --reward: #f2c14e;
+    --reward-ink: #ffe9ad;
+    --reward-light: #2e2410;
+    --shadow-raised: 0 12px 32px rgba(45, 214, 139, 0.14);
   }
 }
 
@@ -49,9 +85,13 @@
   --accent-light: #14271e;
   --error: #f0705a;
   --error-light: #2e1a15;
+  --reward: #f2c14e;
+  --reward-ink: #ffe9ad;
+  --reward-light: #2e2410;
+  --shadow-raised: 0 12px 32px rgba(45, 214, 139, 0.14);
 }
 
-/* Mapeo de tokens → utilidades Tailwind v4 (bg-bg, text-ink, border-border…) */
+/* Mapeo de tokens → utilidades Tailwind v4 (bg-bg, text-ink, border-reward…) */
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -64,6 +104,9 @@
   --color-accent-light: var(--accent-light);
   --color-error: var(--error);
   --color-error-light: var(--error-light);
+  --color-reward: var(--reward);
+  --color-reward-ink: var(--reward-ink);
+  --color-reward-light: var(--reward-light);
   --font-display: var(--font-quicksand), sans-serif;
   --font-sans: var(--font-red-hat), sans-serif;
 }
@@ -72,4 +115,73 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-red-hat), system-ui, sans-serif;
+}
+
+/* Foco de teclado consistente en toda la app: un único estilo en vez de que
+   cada componente decida el suyo — la predictibilidad reduce la carga
+   cognitiva de navegar por teclado o lector de pantalla. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Motion — reservado para momentos de recompensa/transición (ver nota de
+   arriba). Todas las animaciones respetan prefers-reduced-motion. */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes celebrate {
+  0%,
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) scale(1.08) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(0) scale(0.98) rotate(3deg);
+  }
+  75% {
+    transform: translateY(-3px) scale(1.03) rotate(-1deg);
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 220ms var(--ease-out) both;
+}
+
+.animate-fade-slide-up {
+  animation: fade-slide-up 360ms var(--ease-out) both;
+}
+
+.animate-celebrate {
+  animation: celebrate 700ms var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop-in,
+  .animate-fade-slide-up,
+  .animate-celebrate {
+    animation: none;
+  }
 }

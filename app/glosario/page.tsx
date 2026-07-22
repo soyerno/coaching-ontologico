@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import TextLink from "@/components/ui/TextLink";
 import { PROGRAMA } from "@/lib/coaching/programa";
 import { GLOSARIO, glossaryByChapter } from "@/lib/coaching/glosario";
 
@@ -21,9 +21,7 @@ export default function GlosarioPage() {
       maxWidth="max-w-3xl"
     >
       <div className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-1">
-        <Link href="/" className="text-sm font-medium text-accent hover:underline">
-          ← Volver al programa
-        </Link>
+        <TextLink href="/">← Volver al programa</TextLink>
         <nav aria-label="Saltar a capítulo" className="flex flex-wrap gap-2 text-xs">
           {groups.map(({ chapter }) => (
             <a
@@ -44,12 +42,9 @@ export default function GlosarioPage() {
               <h2 className="font-display text-lg font-bold text-ink">
                 <span aria-hidden>{chapter.icon}</span> {chapter.title}
               </h2>
-              <Link
-                href={`/${chapter.slug}`}
-                className="shrink-0 text-xs font-medium text-accent hover:underline"
-              >
+              <TextLink href={`/${chapter.slug}`} size="xs" className="shrink-0">
                 Ir al capítulo →
-              </Link>
+              </TextLink>
             </div>
             <dl className="grid gap-3">
               {terms.map((t) => (

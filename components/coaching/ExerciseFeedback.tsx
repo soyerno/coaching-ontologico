@@ -1,40 +1,71 @@
 "use client";
 
+import Button from "@/components/ui/Button";
+
+type Variant = "correct" | "incorrect" | "insight";
+
 /**
- * Banner de resultado al pie del ejercicio (estilo Duolingo): verde si fue
- * correcto, rojo si no, siempre con la explicación pedagógica y el botón
- * para continuar. La explicación es el corazón: acá se aprende.
+ * Cada variante tiene SU color exclusivo (verde/rojo/dorado) y un ícono
+ * redundante al color — así el estado se lee de un vistazo y no depende
+ * solo del color (accesible para daltonismo, más rápido para todos).
+ * "insight" es el registro propio de las reflexiones: no hay "correcto"
+ * posible en una pregunta abierta, así que se celebra distinto — como
+ * hallazgo, no como acierto.
+ */
+const STYLES: Record<
+  Variant,
+  { border: string; bg: string; text: string; icon: string; title: string }
+> = {
+  correct: {
+    border: "border-accent",
+    bg: "bg-accent-light",
+    text: "text-accent",
+    icon: "✓",
+    title: "¡Correcto!",
+  },
+  incorrect: {
+    border: "border-error",
+    bg: "bg-error-light",
+    text: "text-error",
+    icon: "✗",
+    title: "No exactamente…",
+  },
+  insight: {
+    border: "border-reward",
+    bg: "bg-reward-light",
+    text: "text-reward",
+    icon: "💡",
+    title: "Tu reflexión",
+  },
+};
+
+/**
+ * Banner de resultado al pie del ejercicio (estilo Duolingo). La explicación
+ * es el corazón: acá se aprende, incluso (sobre todo) cuando te equivocás.
+ * Entra con `animate-pop-in`: el único momento de motion dentro de una
+ * lección — justo cuando hay algo nuevo que vale la pena notar.
  */
 export default function ExerciseFeedback({
-  correct,
+  variant,
   explain,
   isLast,
   onContinue,
 }: {
-  correct: boolean;
+  variant: Variant;
   explain: string;
   isLast: boolean;
   onContinue: () => void;
 }) {
+  const s = STYLES[variant];
   return (
-    <div
-      role="status"
-      className={`mt-6 rounded-xl border p-4 ${
-        correct ? "border-accent bg-accent-light" : "border-error bg-error-light"
-      }`}
-    >
-      <p className={`font-display font-bold ${correct ? "text-accent" : "text-error"}`}>
-        {correct ? "¡Correcto!" : "No exactamente…"}
+    <div role="status" className={`animate-pop-in mt-6 rounded-xl border p-4 ${s.border} ${s.bg}`}>
+      <p className={`flex items-center gap-2 font-display font-bold ${s.text}`}>
+        <span aria-hidden>{s.icon}</span> {s.title}
       </p>
       <p className="mt-1 text-sm leading-relaxed text-ink">{explain}</p>
-      <button
-        type="button"
-        autoFocus
-        onClick={onContinue}
-        className="mt-4 w-full rounded-xl bg-accent px-4 py-2.5 font-display font-bold text-white transition-opacity hover:opacity-90 sm:w-auto sm:px-8"
-      >
+      <Button onClick={onContinue} autoFocus responsive className="mt-4">
         {isLast ? "Terminar lección" : "Continuar"}
-      </button>
+      </Button>
     </div>
   );
 }

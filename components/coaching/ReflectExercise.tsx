@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ReflectExercise as ReflectData } from "@/lib/coaching/types";
+import Button from "@/components/ui/Button";
 
 /**
  * Ejercicio de reflexión: pregunta abierta para pensar de verdad. No hay
@@ -34,23 +35,23 @@ export default function ReflectExercise({
         onChange={(e) => setText(e.target.value)}
         placeholder={exercise.placeholder ?? "Escribí acá, para vos…"}
         rows={5}
-        className="mt-4 w-full rounded-xl border border-border bg-surface p-3 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none"
+        className="mt-4 w-full rounded-xl border border-border bg-surface p-3 text-sm text-ink placeholder:text-muted transition-shadow focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-light)] focus:outline-none"
       />
       <p className="mt-1 text-xs text-muted">
         Esto queda solo en tu navegador — es tu cuaderno, no un examen.
       </p>
       {!sent && (
-        <button
-          type="button"
+        <Button
           disabled={text.trim().length < 3}
           onClick={() => {
             setSent(true);
             onAnswered(text.trim());
           }}
-          className="mt-4 w-full rounded-xl bg-accent px-4 py-2.5 font-display font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:px-8"
+          responsive
+          className="mt-4"
         >
           Listo, lo escribí
-        </button>
+        </Button>
       )}
     </div>
   );

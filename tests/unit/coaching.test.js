@@ -9,7 +9,7 @@ import {
   totalExercises,
   totalLessons,
 } from "@/lib/coaching/programa";
-import { nextStreak } from "@/lib/coaching/progress";
+import { isStreakAtRisk, nextStreak } from "@/lib/coaching/progress";
 import { GLOSARIO, glossaryByChapter } from "@/lib/coaching/glosario";
 
 describe("programa de coaching — integridad del contenido", () => {
@@ -206,5 +206,12 @@ describe("racha de días", () => {
   it("suma si la última fue ayer y reinicia si hubo un hueco", () => {
     expect(nextStreak({ count: 3, last: yesterday })).toEqual({ count: 4, last: today });
     expect(nextStreak({ count: 9, last: "2020-01-01" })).toEqual({ count: 1, last: today });
+  });
+
+  it("isStreakAtRisk: solo true si hay racha vigente y hoy todavía no se completó nada", () => {
+    expect(isStreakAtRisk({ count: 0, last: null })).toBe(false);
+    expect(isStreakAtRisk({ count: 3, last: today })).toBe(false); // ya asegurada hoy
+    expect(isStreakAtRisk({ count: 3, last: yesterday })).toBe(true); // en riesgo
+    expect(isStreakAtRisk({ count: 5, last: "2020-01-01" })).toBe(false); // ya se rompió, no es "riesgo"
   });
 });

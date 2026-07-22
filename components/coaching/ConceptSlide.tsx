@@ -1,6 +1,7 @@
 "use client";
 
 import type { ConceptCard } from "@/lib/coaching/types";
+import Button from "@/components/ui/Button";
 import Diagram from "./diagrams";
 
 /**
@@ -43,13 +44,9 @@ export default function ConceptSlide({
           <p className="mt-1 text-sm leading-relaxed text-ink">{card.example}</p>
         </div>
       )}
-      <button
-        type="button"
-        onClick={onContinue}
-        className="mt-6 w-full rounded-xl bg-accent px-4 py-2.5 font-display font-bold text-white transition-opacity hover:opacity-90 sm:w-auto sm:px-8"
-      >
+      <Button onClick={onContinue} responsive className="mt-6">
         Entendido, sigamos
-      </button>
+      </Button>
     </div>
   );
 }
